@@ -18,3 +18,14 @@ Download the repository and run the codes using:
 | 5- Tensorflow Variables and Placeholders.ipynb  | Basics of TF placeholders and variables  | 
 | 7- Estimators.ipynb  | TF estimators  | 
 | 8- Convolutional Neural Networks.ipynb  | CNNs in TF | 
+
+## Tensorflow 2X Jupyter Notebooks
+The following information expands on the requirements of Tensorflow_2X_JupyterNotebook
+## Getting Started
+Download the repository and run the codes using: 
+> Python == 3.7
+>
+> Tensorflow == 2+
+>
+## Details
+The notebooks were made using google colab
