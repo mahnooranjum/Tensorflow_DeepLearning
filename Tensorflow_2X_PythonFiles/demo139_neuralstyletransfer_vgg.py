@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 """Demo139_NeuralStyleTransfer_VGG.ipynb
+
+
 # **Spit some [tensor] flow**
 
 We need to learn the intricacies of tensorflow to master deep learning
@@ -93,11 +95,6 @@ style_layers = ['block1_conv1',
 num_content_layers = len(content_layers)
 num_style_layers = len(style_layers)
 
-for name, output in zip(style_layers, style_outputs):
-  print(name)
-  print("  shape: ", output.numpy().shape)
-  print()
-
 def vgg_layers(layer_names):
   vgg = tf.keras.applications.VGG19(include_top=False, weights='imagenet')
   vgg.trainable = False
@@ -109,6 +106,11 @@ def vgg_layers(layer_names):
 
 style_extractor = vgg_layers(style_layers)
 style_outputs = style_extractor(style_image*255)
+
+for name, output in zip(style_layers, style_outputs):
+  print(name)
+  print("  shape: ", output.numpy().shape)
+  print()
 
 def gram_matrix(input_tensor):
   result = tf.linalg.einsum('bijc,bijd->bcd', input_tensor, input_tensor)
@@ -144,6 +146,8 @@ class StyleContentModel(tf.keras.models.Model):
                   in zip(self.style_layers, style_outputs)}
     
     return {'content':content_dict, 'style':style_dict}
+
+extractor = StyleContentModel(style_layers, content_layers)
 
 results = extractor(tf.constant(content_image))
 
