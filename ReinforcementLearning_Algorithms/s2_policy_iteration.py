@@ -25,17 +25,25 @@ values = [0, 0, 0]
 
 policy = [sample(actions,1)[0] for _ in range(len(states))]
 policy = [1, 0, 1]
-# q_values = [[0 for _ in range(len(actions))] for _ in states]
+q_values = [[0 for _ in range(len(actions))] for _ in states]
 
 
 for _ in range(10):
     values_current = list(values)
+    policy_old = list(policy)
     for state in states:
-        state = 0
         values_current[state]= np.dot(state_transitions[state][policy[state]],\
                                      np.add(reward_transitions[state][policy[state]], values) )
             
         values = values_current
+        
+        for action in actions:
+            q_values[state][action] = np.dot(state_transitions[state][action],\
+                                         np.add(reward_transitions[state][action], values) )
+    
+    policy = np.argmax(q_values, axis=1)
+    if list(policy) == policy_old: 
+        break
         
         
         
