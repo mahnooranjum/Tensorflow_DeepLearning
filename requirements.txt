@@ -1,0 +1,9 @@
+pyopengl
+tensorflow
+scikit-learn
+numpy
+pandas
+scipy
+gym[all]
+pygame
+Pillow
